@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        div {
+            color: purple;
+            font-size: 60px;
+        }
+    </style>
+</head>
+
+<body>
+
+    Weather
+
+    <div>
+
+    </div>
+
+
+    <script src="js/api.js"></script>
+    <script>
+
+
+        //api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
+        //http://api.openweathermap.org/data/2.5/weather?q=Houston&appid=9361bd03ec7175e9eea92fdf7a717518
+
+        console.log(APIKEY)
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=Houston&appid=${APIKEY}`)
+            .then(michael => michael.json())
+            .then(data => {
+
+                console.log(data);
+                console.log(data.main.temp);
+
+                let kelvin = data.main.temp;
+                let degC = Math.floor(kelvin - 273.15);
+
+                console.log(degC);
+
+                //F = C * 1.8 + 32;
+
+                let degF = Math.floor(degC * 1.8 + 32);
+
+                console.log(degF)
+
+                let div = document.querySelector('div');
+
+
+                div.textContent = `Current Temp: ${degF.toString()}`
+            })
+
+    </script>
+</body>
+
+</html>
